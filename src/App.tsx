@@ -165,6 +165,7 @@ const App = () => {
         <Button
           disabled={!id || (!allCategory && category.size === 0) || isPending}
           onClick={handleClick}
+          size="large"
           sx={{ alignSelf: 'center' }}
           variant="contained"
         >

@@ -5,10 +5,10 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
-import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import { useMemo } from 'react';
 
+import LinearProgressWithLabel from './components/LinearProgressWithLabel';
 import type { ScopeJobResult } from './hooks/useScopeJobMutation';
 
 type ResultProps = {
@@ -42,17 +42,15 @@ const Result = ({ data, status, currentCount, totalCount }: ResultProps) => {
     <>
       <Divider sx={{ my: 3 }} />
       {status === 'pending' ? (
-        <LinearProgress
-          sx={{ my: 10 }}
+        <LinearProgressWithLabel
           value={
             totalCount > 0 ? Math.round((currentCount / totalCount) * 100) : 0
           }
-          variant="determinate"
         />
       ) : (
         <>
           <Typography align="center" variant="h4">
-            검거! &#x1F575;&#xFE0F;
+            {result.length > 0 ? '검거!' : '검거실패!'} &#x1F575;&#xFE0F;
           </Typography>
 
           <Grid container spacing={1} sx={{ my: 2 }}>
