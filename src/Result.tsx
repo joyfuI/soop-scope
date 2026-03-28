@@ -73,7 +73,7 @@ const Result = ({ data, status, currentCount, totalCount }: ResultProps) => {
                     <CardMedia
                       alt={item.broad.broad_title}
                       component="img"
-                      image={item.broad.broad_thumb}
+                      image={`https:${item.broad.broad_thumb}`}
                     />
                     <CardContent>
                       {item.findId.map((id) => (

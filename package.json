@@ -2,13 +2,15 @@
   "name": "soop-scope",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "SOOP 시청자 역스코프 프로그램",
   "type": "module",
   "main": "electron/main.js",
   "scripts": {
     "dev:renderer": "vite",
     "dev:electron": "electron .",
     "build:renderer": "tsc -b && vite build",
+    "app:dir": "pnpm build:renderer && electron-builder --dir",
+    "app:dist": "pnpm build:renderer && electron-builder --win portable",
     "format": "biome format --write",
     "lint": "biome lint --write",
     "check": "biome check --write",
@@ -36,7 +38,18 @@
     "@vitejs/plugin-react": "^6.0.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "electron": "^41.1.0",
+    "electron-builder": "^26.8.1",
     "typescript": "^6.0.2",
     "vite": "^8.0.3"
+  },
+  "build": {
+    "productName": "soop-scope",
+    "appId": "com.joyfui.soop-scope",
+    "directories": { "output": "release" },
+    "win": {
+      "target": [{ "target": "portable", "arch": ["x64"] }],
+      "icon": "electron/assets/icon.ico",
+      "artifactName": "${productName}.${ext}"
+    }
   }
 }
