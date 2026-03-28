@@ -1,0 +1,42 @@
+{
+  "name": "soop-scope",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev:renderer": "vite",
+    "dev:electron": "electron .",
+    "build:renderer": "tsc -b && vite build",
+    "format": "biome format --write",
+    "lint": "biome lint --write",
+    "check": "biome check --write",
+    "reporter": "biome check --reporter=summary"
+  },
+  "author": "joyfuI",
+  "license": "MIT",
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.9",
+    "@tanstack/react-query": "^5.95.2",
+    "@tanstack/react-query-devtools": "^5.95.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "soop-extension": "^1.3.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.9",
+    "@rolldown/plugin-babel": "^0.2.2",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "electron": "^41.1.0",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.3"
+  }
+}
