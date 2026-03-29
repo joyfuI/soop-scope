@@ -1,14 +1,10 @@
-import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useMemo } from 'react';
 
 import LinearProgressWithLabel from './components/LinearProgressWithLabel';
+import ScopeCard from './components/ScopeCard.tsx';
 import type { ScopeJobResult } from './hooks/useScopeJobMutation';
 
 type ResultProps = {
@@ -56,33 +52,7 @@ const Result = ({ data, status, currentCount, totalCount }: ResultProps) => {
           <Grid container spacing={1} sx={{ my: 2 }}>
             {result.map((item) => (
               <Grid key={item.broad.broad_no} size={6}>
-                <Card>
-                  <CardActionArea
-                    onClick={() =>
-                      window.open(
-                        `https://play.sooplive.com/${item.broad.user_id}`,
-                      )
-                    }
-                  >
-                    <CardHeader
-                      subheader={item.broad.broad_title}
-                      title={item.broad.user_nick}
-                    />
-                    <CardMedia
-                      alt={item.broad.broad_title}
-                      component="img"
-                      image={`https:${item.broad.broad_thumb}`}
-                    />
-                    <CardContent>
-                      {item.findId.map((id) => (
-                        <Typography
-                          key={id.userId}
-                          variant="body1"
-                        >{`${id.username} (${id.userId})`}</Typography>
-                      ))}
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
+                <ScopeCard data={item} />
               </Grid>
             ))}
           </Grid>
