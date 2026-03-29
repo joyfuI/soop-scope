@@ -45,6 +45,7 @@ app.whenReady().then(() => {
   ipcMain.handle('chatUserList', handleChatUserList);
   ipcMain.handle('mainBroadList', handleMainBroadList);
   ipcMain.handle('categoryList', handleCategoryList);
+  ipcMain.on('quit', () => app.quit());
 
   createWindow();
 

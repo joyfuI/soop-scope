@@ -11,7 +11,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import type { ChangeEvent } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useCategoryListQuery from './hooks/useCategoryListQuery';
 import type { ScopeJobResult } from './hooks/useScopeJobMutation';
@@ -30,7 +30,7 @@ const App = () => {
     broadList: [],
   });
 
-  const { data: categoryList } = useCategoryListQuery(
+  const { data: categoryList, isFetchedAfterMount } = useCategoryListQuery(
     '/src/shared/category.json',
   );
   const { mutateAsync, status, isPending, currentCount, totalCount } =
@@ -62,6 +62,13 @@ const App = () => {
     });
     setResult(data);
   };
+
+  useEffect(() => {
+    if (isFetchedAfterMount && !categoryList?.length) {
+      alert('카테고리 데이터를 받아오지 못했습니다. 앱을 종료합니다.');
+      window.electron.quit();
+    }
+  }, [isFetchedAfterMount, categoryList]);
 
   return (
     <Container component="main" maxWidth="sm" sx={{ p: 2 }}>
