@@ -46,3 +46,5 @@ export type MainBroadListResponse = {
   time: number; // 1774619836
   is_wp: [];
 };
+
+export type CategoryList = { label: string; value: string }[];

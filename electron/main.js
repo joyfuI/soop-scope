@@ -2,6 +2,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { app, BrowserWindow, ipcMain, shell } from 'electron/main';
 
+import { handleCategoryList } from './category.js';
 import { handleChatUserList, handleMainBroadList } from './soop.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -43,6 +44,7 @@ app.setPath('appData', process.env.PORTABLE_EXECUTABLE_DIR ?? __dirname);
 app.whenReady().then(() => {
   ipcMain.handle('chatUserList', handleChatUserList);
   ipcMain.handle('mainBroadList', handleMainBroadList);
+  ipcMain.handle('categoryList', handleCategoryList);
 
   createWindow();
 

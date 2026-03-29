@@ -5,7 +5,7 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-import type { ChatUserList, MainBroadListResponse } from '../types.ts';
+import type { ChatUserList, MainBroadListResponse } from '../types';
 
 type ScopeCardProps = {
   data: { findId: ChatUserList; broad: MainBroadListResponse['broad'][0] };

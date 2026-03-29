@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import { useMemo } from 'react';
 
 import LinearProgressWithLabel from './components/LinearProgressWithLabel';
-import ScopeCard from './components/ScopeCard.tsx';
+import ScopeCard from './components/ScopeCard';
 import type { ScopeJobResult } from './hooks/useScopeJobMutation';
 
 type ResultProps = {
