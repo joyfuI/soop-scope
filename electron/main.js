@@ -38,6 +38,8 @@ const createWindow = () => {
   });
 };
 
+app.setPath('appData', process.env.PORTABLE_EXECUTABLE_DIR ?? __dirname);
+
 app.whenReady().then(() => {
   ipcMain.handle('chatUserList', handleChatUserList);
   ipcMain.handle('mainBroadList', handleMainBroadList);

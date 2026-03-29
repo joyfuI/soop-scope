@@ -12,6 +12,7 @@ dist
 release
 dist-ssr
 *.local
+electron/soop-scope
 
 # Editor directories and files
 .vscode/*
