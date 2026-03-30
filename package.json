@@ -2,23 +2,16 @@
   "name": "soop-scope",
   "private": true,
   "version": "1.0.0",
-  "description": "SOOP 시청자 역스코프 프로그램",
   "type": "module",
-  "main": "electron/main.js",
   "scripts": {
-    "dev:renderer": "vite",
-    "dev:electron": "electron .",
-    "build:renderer": "tsc -b && vite build",
-    "app:dir": "pnpm build:renderer && electron-builder --dir",
-    "app:dist": "pnpm build:renderer && electron-builder --win portable",
+    "dev": "vite",
+    "build": "tsc && vite build && electron-builder",
+    "preview": "vite preview",
     "format": "biome format --write",
     "lint": "biome lint --write",
     "check": "biome check --write",
     "reporter": "biome check --reporter=summary"
   },
-  "author": "joyfuI",
-  "license": "MIT",
-  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -32,7 +25,6 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.9",
     "@rolldown/plugin-babel": "^0.2.2",
-    "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
@@ -40,16 +32,10 @@
     "electron": "^41.1.0",
     "electron-builder": "^26.8.1",
     "typescript": "^6.0.2",
-    "vite": "^8.0.3"
+    "vite": "^8.0.3",
+    "vite-plugin-electron": "^1.0.0-beta.2",
+    "vite-plugin-electron-renderer": "^0.14.5"
   },
-  "build": {
-    "productName": "soop-scope",
-    "appId": "com.joyfui.soop-scope",
-    "directories": { "output": "release" },
-    "win": {
-      "target": [{ "target": "portable", "arch": ["x64"] }],
-      "icon": "electron/assets/icon.ico",
-      "artifactName": "${productName}.${ext}"
-    }
-  }
+  "main": "dist-electron/main.js",
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
 }

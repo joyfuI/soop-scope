@@ -1,0 +1,21 @@
+// @see - https://www.electron.build/configuration/configuration
+{
+  $schema: "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  appId: "com.joyfui.soop-scope",
+  asar: true,
+  productName: "soop-scope",
+  directories: {
+    output: "release",
+  },
+  files: ["dist", "dist-electron"],
+  win: {
+    target: [
+      {
+        target: "portable",
+        arch: ["x64"],
+      },
+    ],
+    artifactName: "${productName}.${ext}",
+    icon: "public/icon.ico",
+  },
+}

@@ -34,11 +34,11 @@ const useScopeJobMutation = () => {
         pageNo <= targetPageCount && broadList.length < range;
         pageNo += 1
       ) {
-        const data = (await window.electron.mainBroadList(
+        const data = await window.electron.mainBroadList(
           selectValue === 'all'
             ? { selectType: 'action', selectValue: 'all', pageNo }
             : { selectType: 'cate', selectValue, pageNo, szActionType: 2 },
-        )) as unknown as MainBroadListResponse;
+        );
 
         if (!data.broad.length) {
           break;

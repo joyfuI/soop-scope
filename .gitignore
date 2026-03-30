@@ -9,10 +9,11 @@ lerna-debug.log*
 
 node_modules
 dist
-release
+dist-electron
 dist-ssr
+release
 *.local
-electron/soop-scope
+soop-scope
 
 # Editor directories and files
 .vscode/*
