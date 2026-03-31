@@ -25,6 +25,7 @@ export const handleChatUserList = (
   _event: IpcMainInvokeEvent,
   streamerId: string,
 ): Promise<ChatUserList> => {
+  console.log('call chatUserList', streamerId);
   const client = new SoopClient();
   const soopChat = client.chat({ streamerId });
   let userList: ChatUserList = [];
@@ -67,6 +68,7 @@ export const handleMainBroadList = async (
   _event: IpcMainInvokeEvent,
   params: MainBroadListParams,
 ): Promise<MainBroadListResponse> => {
+  console.log('call mainBroadList', params);
   const { selectType, selectValue, pageNo, szActionType } = params;
   const response = await fetch(
     `https://live.sooplive.com/api/main_broad_list_api.php?selectType=${selectType}&selectValue=${selectValue}&orderType=view_cnt&pageNo=${pageNo}&strmLangType=ko_KR&lang=ko_KR&szActionType=${szActionType ?? ''}`,
