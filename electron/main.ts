@@ -29,6 +29,7 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 800,
+    autoHideMenuBar: true,
     webPreferences: { preload: path.join(__dirname, 'preload.mjs') },
     icon: path.join(process.env.VITE_PUBLIC, 'icon.png'),
   });
