@@ -36,22 +36,28 @@ const App = () => {
   const { mutateAsync, status, isPending, currentCount, totalCount } =
     useScopeJobMutation();
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.value === 'all') {
-      setAllCategory(event.target.checked);
+  const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setId(e.target.value);
+  };
+
+  const handleCategoryChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === 'all') {
+      setAllCategory(e.target.checked);
       setCategory(new Set());
-    } else if (event.target.checked) {
-      setCategory((prevCategory) =>
-        new Set(prevCategory).add(event.target.value),
-      );
+    } else if (e.target.checked) {
+      setCategory((prevCategory) => new Set(prevCategory).add(e.target.value));
       setAllCategory(false);
     } else {
       setCategory((prevCategory) => {
         const newSet = new Set(prevCategory);
-        newSet.delete(event.target.value);
+        newSet.delete(e.target.value);
         return newSet;
       });
     }
+  };
+
+  const handleRangeChange = (_: Event, value: number | number[]) => {
+    setRange(Array.isArray(value) ? value[0] : value);
   };
 
   const handleClick = async () => {
@@ -88,7 +94,7 @@ const App = () => {
           maxRows={4}
           minRows={1}
           multiline
-          onChange={(e) => setId(e.target.value)}
+          onChange={handleIdChange}
           value={id}
           variant="outlined"
         />
@@ -102,7 +108,7 @@ const App = () => {
                 control={
                   <Checkbox
                     indeterminate={allCategory === null}
-                    onChange={handleChange}
+                    onChange={handleCategoryChange}
                   />
                 }
                 label="전체"
@@ -111,7 +117,7 @@ const App = () => {
               {categoryList?.map((item) => (
                 <FormControlLabel
                   checked={category.has(item.value)}
-                  control={<Checkbox onChange={handleChange} />}
+                  control={<Checkbox onChange={handleCategoryChange} />}
                   key={item.value}
                   label={item.label}
                   value={item.value}
@@ -136,9 +142,7 @@ const App = () => {
             ]}
             max={RANGE.MAX}
             min={RANGE.MIN}
-            onChange={(_, value) =>
-              setRange(Array.isArray(value) ? value[0] : value)
-            }
+            onChange={handleRangeChange}
             sx={{
               mb: 4,
               '& .MuiSlider-valueLabel': {

@@ -12,13 +12,13 @@ type ScopeCardProps = {
 };
 
 const ScopeCard = ({ data }: ScopeCardProps) => {
+  const handleClick = () => {
+    window.open(`https://play.sooplive.com/${data.broad.user_id}`);
+  };
+
   return (
     <Card>
-      <CardActionArea
-        onClick={() =>
-          window.open(`https://play.sooplive.com/${data.broad.user_id}`)
-        }
-      >
+      <CardActionArea onClick={handleClick}>
         <CardHeader
           subheader={data.broad.broad_title}
           title={data.broad.user_nick}
