@@ -5,8 +5,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import App from './App';
-import theme from './theme';
+import App from './App.tsx';
+import theme from './theme.ts';
 
 const queryClient = new QueryClient({
   defaultOptions: {

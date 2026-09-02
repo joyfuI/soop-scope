@@ -1,44 +1,43 @@
 # soop-scope
 
-SOOP 시청자 역스코프 Electron 데스크톱 앱입니다.
+SOOP 시청자 역스코프 Deno 데스크톱 앱입니다.
 
 카테고리별 상단 방송에서 특정 유저가 있는지 찾는 방식입니다.
 
-관련 잡담은 [https://blog.joyfui.com/1317](https://blog.joyfui.com/1317)
+관련 잡담은 [https://blog.joyfui.com/1325](https://blog.joyfui.com/1325)
 
 ## 시작하기
 
 ### 설치
 
 ```bash
-pnpm install
+deno install
 ```
 
 ### 개발 실행
 
 ```bash
-pnpm run dev
+deno task dev
 ```
 
 ### 프로덕션 빌드
 
 ```bash
-pnpm run build
+deno task build
 ```
 
 빌드가 성공하면 다음 산출물이 생성됩니다.
 
 - `dist`: 렌더러 번들
-- `dist-electron`: Electron 메인/프리로드 번들
-- `release/soop-scope.exe`: Windows x64 포터블 실행 파일
+- `release/soop-scope/`: Windows 실행 파일
 
 ### 코드 정리 및 검사
 
 ```bash
-pnpm run format
-pnpm run lint
-pnpm run check
-pnpm run reporter
+deno task format
+deno task lint
+deno task check
+deno task reporter
 ```
 
 ## 사용 방법
@@ -68,6 +67,5 @@ pnpm run reporter
 │  ├─ shared/           # 카테고리 JSON
 │  └─ utils/            # 범용 유틸리티
 ├─ dist/                # 렌더러 빌드 결과물
-├─ dist-electron/       # Electron 빌드 결과물
 └─ release/             # 배포 산출물
 ```

@@ -1,12 +1,11 @@
-import type { IpcMainInvokeEvent } from 'electron';
 import { SoopChatEvent, SoopClient } from 'soop-extension';
 
 import type {
   ChatUserList,
   MainBroadListParams,
   MainBroadListResponse,
-} from '../src/types';
-import chunk from '../src/utils/chunk';
+} from '../src/types.ts';
+import chunk from '../src/utils/chunk.ts';
 
 const SEPARATOR = '\x0c';
 
@@ -22,7 +21,6 @@ const parseExit = (packet: string): ChatUserList => {
 };
 
 export const handleChatUserList = (
-  _event: IpcMainInvokeEvent,
   streamerId: string,
 ): Promise<ChatUserList> => {
   console.log('call chatUserList', streamerId);
@@ -59,19 +57,28 @@ export const handleChatUserList = (
       }
     });
 
-    // Connect to chat
-    soopChat.connect();
+    // Connect to chat. 실패 시 최대 3번 재시도
+    soopChat.connect().catch((error) => {
+      console.error('1 try', streamerId, error);
+      soopChat.connect().catch((error) => {
+        console.error('2 try', streamerId, error);
+        soopChat.connect().catch((error) => {
+          console.error('3 try', streamerId, error);
+        });
+      });
+    });
   });
 };
 
 export const handleMainBroadList = async (
-  _event: IpcMainInvokeEvent,
   params: MainBroadListParams,
 ): Promise<MainBroadListResponse> => {
   console.log('call mainBroadList', params);
   const { selectType, selectValue, pageNo, szActionType } = params;
   const response = await fetch(
-    `https://live.sooplive.com/api/main_broad_list_api.php?selectType=${selectType}&selectValue=${selectValue}&orderType=view_cnt&pageNo=${pageNo}&strmLangType=ko_KR&lang=ko_KR&szActionType=${szActionType ?? ''}`,
+    `https://live.sooplive.com/api/main_broad_list_api.php?selectType=${selectType}&selectValue=${selectValue}&orderType=view_cnt&pageNo=${pageNo}&strmLangType=ko_KR&lang=ko_KR&szActionType=${
+      szActionType ?? ''
+    }`,
   );
   return await response.json();
 };

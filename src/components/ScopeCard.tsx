@@ -5,7 +5,7 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-import type { ChatUserList, MainBroadListResponse } from '../types';
+import type { ChatUserList, MainBroadListResponse } from '../types.ts';
 
 type ScopeCardProps = {
   data: { findId: ChatUserList; broad: MainBroadListResponse['broad'][0] };
@@ -13,7 +13,7 @@ type ScopeCardProps = {
 
 const ScopeCard = ({ data }: ScopeCardProps) => {
   const handleClick = () => {
-    window.open(`https://play.sooplive.com/${data.broad.user_id}`);
+    bindings.openExternal(`https://play.sooplive.com/${data.broad.user_id}`);
   };
 
   return (

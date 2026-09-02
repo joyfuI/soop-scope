@@ -1,17 +1,15 @@
 import { readFile } from 'node:fs/promises';
-import path from 'node:path';
-import type { IpcMainInvokeEvent } from 'electron';
+import { join } from '@std/path';
 
-import type { CategoryList } from '../src/types';
+import type { CategoryList } from '../src/types.ts';
 
 export const handleCategoryList = async (
-  _event: IpcMainInvokeEvent,
   jsonPath: string,
 ): Promise<CategoryList> => {
   console.log('call categoryList', jsonPath);
   let text: string;
-  if (process.env.VITE_DEV_SERVER_URL) {
-    text = await readFile(path.join(process.env.APP_ROOT, jsonPath), 'utf8');
+  if (Deno.args.includes('--dev')) {
+    text = await readFile(join('.', jsonPath), 'utf8');
   } else {
     const response = await fetch(
       `https://raw.githubusercontent.com/joyfuI/soop-scope/refs/heads/main${jsonPath}`,

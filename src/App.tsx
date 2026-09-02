@@ -13,10 +13,10 @@ import Typography from '@mui/material/Typography';
 import type { ChangeEvent } from 'react';
 import { useEffect, useState } from 'react';
 
-import useCategoryListQuery from './hooks/useCategoryListQuery';
-import type { ScopeJobResult } from './hooks/useScopeJobMutation';
-import useScopeJobMutation from './hooks/useScopeJobMutation';
-import Result from './Result';
+import useCategoryListQuery from './hooks/useCategoryListQuery.ts';
+import type { ScopeJobResult } from './hooks/useScopeJobMutation.ts';
+import useScopeJobMutation from './hooks/useScopeJobMutation.ts';
+import Result from './Result.tsx';
 
 const RANGE = { MIN: 1, MAX: 180 } as const;
 
@@ -72,7 +72,7 @@ const App = () => {
   useEffect(() => {
     if (isFetchedAfterMount && !categoryList?.length) {
       alert('카테고리 데이터를 받아오지 못했습니다. 앱을 종료합니다.');
-      window.electron.quit();
+      bindings.quit();
     }
   }, [isFetchedAfterMount, categoryList]);
 

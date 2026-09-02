@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 
-import type { ChatUserList, MainBroadListResponse } from '../types';
-import runWithConcurrency from '../utils/runWithConcurrency';
+import type { ChatUserList, MainBroadListResponse } from '../types.ts';
+import runWithConcurrency from '../utils/runWithConcurrency.ts';
 
 type ScopeJobParams = { id: string; selectValue: string; range: number };
 export type ScopeJobResult = {
@@ -34,7 +34,7 @@ const useScopeJobMutation = () => {
         pageNo <= targetPageCount && broadList.length < range;
         pageNo += 1
       ) {
-        const data = await window.electron.mainBroadList(
+        const data = await bindings.mainBroadList(
           selectValue === 'all'
             ? { selectType: 'action', selectValue: 'all', pageNo }
             : { selectType: 'cate', selectValue, pageNo, szActionType: 2 },
@@ -51,9 +51,7 @@ const useScopeJobMutation = () => {
 
       const tasks = broadList.map((broad) => async () => {
         try {
-          const chatUserList = await window.electron.chatUserList(
-            broad.user_id,
-          );
+          const chatUserList = await bindings.chatUserList(broad.user_id);
           return { broad, chatUserList };
         } catch (error) {
           console.error('chatUserList error', broad.user_id, error);
